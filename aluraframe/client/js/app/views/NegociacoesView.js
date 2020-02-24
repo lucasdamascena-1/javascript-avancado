@@ -1,7 +1,7 @@
 class NegociacoesView {
     
     constructor(elemento) {
-        
+
         this._elemento = elemento;
     }
     
