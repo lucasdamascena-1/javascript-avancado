@@ -9,35 +9,33 @@ class NegociacaoController{
         this._listaNegociacoes = new ListaNegociacoes();
         this._negociacoesView = new NegociacoesView($('#negociacoesView'));
 
-        this._negociacoesView.update();
+        this._negociacoesView.update(this._listaNegociacoes);
     }
 
     /*Programação Defensiva protegendo a Lista de Negociações.
       Quando alguém pede a lista de negociações é devolvida uma cópia da lista.*/
 
 
-    adiciona(event){
+      adiciona(event) {
         event.preventDefault();
-	
         this._listaNegociacoes.adiciona(this._criaNegociacao());
-        //this._listaNegociacoes.negociacoes.push(this._criaNegociacao());
         this._negociacoesView.update(this._listaNegociacoes);
-        this._limpaFormulario();		
-        //console.log(this._listaNegociacoes._negociacoes);
+        this._limpaFormulario();   
     }
-
-    _criaNegociacao(){
-        new Negociacao(
+    
+    _criaNegociacao() {
+        
+        return new Negociacao(
             DataHelper.textoParaData(this._inputData.value),
             this._inputQuantidade.value,
-            this._inputValor.value);
+            this._inputValor.value);    
     }
-
-    _limpaFormulario(){
-        this._inputData.value = "";
+    
+    _limpaFormulario() {
+     
+        this._inputData.value = '';
         this._inputQuantidade.value = 1;
-        this._inputValor.value = 1;
-
-        this._inputData.focus();
+        this._inputValor.value = 0.0;
+        this._inputData.focus();   
     }
 }
